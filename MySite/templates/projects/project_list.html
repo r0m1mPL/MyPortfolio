@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Projects and videos{% endblock title %}
+
+{% block content %}
+
+{% if check_main %}<main id="main">{% endif %}
+<!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio sectison-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Projects and videos</h2>
+          <p>All my completed Projects. And videos from my YouTube channel.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              {% for category in category_list %}
+                <li data-filter=".filter-{{category.url}}">{{category.url}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+
+          <!-- <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="{% static 'projects/img/portfolio/portfolio-1.jpg' %}" class="project_image" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'projects/img/portfolio/portfolio-1.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="App 1"><i class="bx bx-plus"></i></a>
+                <a href="{% url 'index' %}" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="{% static 'projects/img/portfolio/portfolio-2.jpg' %}" class="project_image" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'projects/img/portfolio/portfolio-2.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Web 3"><i class="bx bx-plus"></i></a>
+                <a href="{% url 'index' %}" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="{% static 'projects/img/portfolio/portfolio-4.jpg' %}" class="project_image" alt="">
+              <div class="portfolio-links">
+                <a href="{% static 'projects/img/portfolio/portfolio-4.jpg' %}" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Card 2"><i class="bx bx-plus"></i></a>
+                <a href="{% url 'index' %}" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          </div> -->
+          
+          {% for project in project_list %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter-{{project.category.url}}">
+            <div class="portfolio-wrap">
+              <!-- 575 564 -->
+              <img src="{{project.main_image.url}}" class="project_image" alt="">
+              <div class="portfolio-links">
+                  <a href="{% url 'project_detail' project.category.url project.url %}" title="More Details"><i class="bx bx-link"></i>{{project.title}}</a>
+              </div>
+              <div>
+                {{project.short_description}}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+  {% if check_main %}</main>{% endif %}
+    
+  {% endblock content %}

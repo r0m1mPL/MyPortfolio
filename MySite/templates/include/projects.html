@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Projects{% endblock title %}
+
+{% block content %}
+
+<main id="main">
+<!-- ======= Portfolio Section ======= -->
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Projects</h2>
+          <p>Here can be some text.</p>
+        </div>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <!-- <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li> -->
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+          
+          {% for project in queryset %}
+          <div class="col-lg-4 col-md-6 portfolio-item filter">
+            <div class="portfolio-wrap">
+              <img src="{{project.image.url}}" class="img-fluid" alt="">
+              <div class="portfolio-links">
+                <a href="{% url 'index' %}" title="More Details"><i class="bx bx-link"></i>{{project.title}}</a>
+              </div>
+              <div>
+                {{project.short_description}}
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+        </div>
+
+      </div>
+    </section><!-- End Portfolio Section -->
+  </main>
+    
+  {% endblock content %}
