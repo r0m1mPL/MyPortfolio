@@ -2,9 +2,12 @@ from django.shortcuts import render, redirect
 from .forms import MessageForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from datetime import datetime
 
 
 def index(request):
+    date = list(map(int, datetime.now().strftime("%Y %m %d").split()))
+    age = date[0] - 2005 if date[1] >= 4 and date[2] >= 16 else date[0] - 2006
     form = MessageForm
     if request.method == 'POST':
         form = MessageForm(request.POST)
@@ -23,11 +26,13 @@ def index(request):
             else:
                 messages.error(request, "Full name is incorrect!")
                 return redirect('/index/#contact')
-    return render(request, 'projects/index.html', context={'form': form})
+    return render(request, 'projects/index.html', context={'form': form, 'age': age})
 
 
 def about(request):
-    return render(request, 'include/about.html', {'check_main': True})
+    date = list(map(int, datetime.now().strftime("%Y %m %d").split()))
+    age = date[0] - 2005 if date[1] >= 4 and date[2] >= 16 else date[0] - 2006
+    return render(request, 'include/about.html', {'check_main': True, 'age': age})
 
 
 def resume(request):

@@ -7,8 +7,8 @@
 {% block content %}
 
 {% if check_main %}<main id="main">{% endif %}
-<!-- ======= Contact Section ======= -->
-<section id="contact" class="contact">
+  <!-- ======= Contact Section ======= -->
+  <section id="contact" class="contact">
     <div class="container">
 
       <div class="section-title">
@@ -22,38 +22,46 @@
 
         <div class="col-lg-5 d-flex align-items-stretch">
           <div class="info">
-          <ul>
-            <li>Instagram - <a href="https://www.instagram.com/romasimachenko/" title="Инстаграм" target="_blank"><span>romasimachenko</span></a></li>
-            <li>YouTube - <a href="https://www.youtube.com/channel/UCTghSGYeyeiEUZ3qAQKnwDQ" title="Ютуб" target="_blank"><span>r0m1mPL<span></a></li>
-            <li>Telegram - <a href="https://t.me/r0m1mPL" title="Телеграм" target="_blank"><span>r0m1mPL</span></a></li>
-            <li>GitHub - <a href="https://t.me/r0m1mPL" title="Гит Хаб" target="_blank"><span>r0m1mPL</span></a></li>
-            <li>Gmail - <a href="mailto:simachenko.roma@gmail.com" title="Почта" target="_blank"><span>simachenko.roma@gmail.com</span></a></li>
-            <li>Codewars - <a href="https://www.codewars.com/users/r0m1mPL" title="Код варс" target="_blank"><span>r0m1mPL</span></a></li>
-            <li>Discord - <a href="https://discord.gg/QbvVQMb6" title="Дискорд" target="_blank"><span>r0m1mPL#1811</span></a></li>
-            <li>ACMP(Olimpic tasks) - <a href="https://acmp.ru/?main=user&id=312972" title="Олимпиадные Задачи" target="_blank"><span>Симаченко Рома</span></a></li>
-          </ul>
+            <ul>
+              <li>Instagram - <a href="https://www.instagram.com/romasimachenko/" title="Инстаграм"
+                  target="_blank"><span>romasimachenko</span></a></li>
+              <li>YouTube - <a href="https://www.youtube.com/channel/UCTghSGYeyeiEUZ3qAQKnwDQ" title="Ютуб"
+                  target="_blank"><span>r0m1mPL<span></a></li>
+              <li>Telegram - <a href="https://t.me/r0m1mPL" title="Телеграм" target="_blank"><span>r0m1mPL</span></a>
+              </li>
+              <li>GitHub - <a href="https://t.me/r0m1mPL" title="Гит Хаб" target="_blank"><span>r0m1mPL</span></a></li>
+              <li>Gmail - <a href="mailto:simachenko.roma@gmail.com" title="Почта"
+                  target="_blank"><span>simachenko.roma@gmail.com</span></a></li>
+              <li>LeetCode - <a href="https://leetcode.com/r0m1mPL/" title="Лит код"
+                  target="_blank"><span>r0m1mPL</span></a></li>
+              <li>Discord - <a href="https://discord.gg/QbvVQMb6" title="Дискорд"
+                  target="_blank"><span>r0m1mPL#1811</span></a></li>
+              <li>ACMP(Olimpic tasks) - <a href="https://acmp.ru/?main=user&id=312972" title="Олимпиадные Задачи"
+                  target="_blank"><span>Симаченко Рома</span></a></li>
+            </ul>
           </div>
 
         </div>
 
         <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-         <form method="POST" action="">
-              {% csrf_token %}
-              {{ form.as_p }}
+          <form method="POST" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
             <ul class="error_message">
-                {% for message in messages %}
-                    <li>{{message}}</li>
-                {% endfor %}
+              {% for message in messages %}
+              <li>{{message}}</li>
+              {% endfor %}
             </ul>
-             <input type="submit" value="Submit" style="width: 100%; height: 50px" />
-            </div>
-          </form>
+            <input type="submit" value="Submit" style="width: 100%; height: 50px" />
         </div>
-
+        </form>
       </div>
 
     </div>
+
+    </div>
   </section><!-- End Contact Section -->
-{% if check_main %}</main>{% endif %}
-    
+  {% if check_main %}
+</main>{% endif %}
+
 {% endblock content %}
