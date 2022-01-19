@@ -1,9 +1,8 @@
-from django.contrib.auth import models
-from django.forms import ModelForm, fields
+from django.forms import ModelForm
 from .models import Message
 
 
 class MessageForm(ModelForm):
     class Meta:
         model = Message
-        fields = '__all__'
+        fields = ('name', 'email', 'subject', 'message',)

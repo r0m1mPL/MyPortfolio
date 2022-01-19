@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Roma Simachenko{% endblock title %}
+
+{% block content %}
+
+<!-- 2) Hero -->
+{% include 'projects/include/hero.html' %}
+
+<main id="main">
+
+  <!-- 3) About -->
+  {% include 'projects/include/about.html' %}
+
+  <!-- 6) Resume -->
+  {% include 'projects/include/resume.html' %}
+
+  <!-- 10) Contact -->
+  {% include 'projects/include/contact.html' %}
+
+</main>
+
+{% endblock content %}

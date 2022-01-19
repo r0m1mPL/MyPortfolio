@@ -1,12 +1,12 @@
 from django.urls import path
 from . import views
-from MySite.views import admin
 
 
 urlpatterns = [
-    path('admin/', admin, name='admin'),
-    path('', views.index, name='index'),
-    path('index/', views.index, name='index'),
+    path('admin/', views.error, name='error'),
+
+    path('', views.index, name='home'),
+
     path('about/', views.about, name='about'),
     path('resume/', views.resume, name='resume'),
     path('contact/', views.contact, name='contact'),

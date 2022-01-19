@@ -1,14 +1,19 @@
 from django.shortcuts import render, redirect
 from .forms import MessageForm
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
+from django.http import Http404
 from datetime import datetime
+
+
+def error(request):
+    raise Http404("You're not allowed here!")
 
 
 def index(request):
     date = list(map(int, datetime.now().strftime("%Y %m %d").split()))
     age = date[0] - 2005 if date[1] >= 4 and date[2] >= 16 else date[0] - 2006
-    form = MessageForm
+
+    form = MessageForm()
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
@@ -18,29 +23,34 @@ def index(request):
                     form.email = form.email.lower()
                     form.save()
                     messages.error(request, "Message has been sent!")
-                    return redirect('/index/#contact')
+                    return redirect('/#contact')
                 else:
                     messages.error(
                         request, "Email is incorrect or doesn't exist!")
-                    return redirect('/index/#contact')
+                    return redirect('/#contact')
             else:
                 messages.error(request, "Full name is incorrect!")
-                return redirect('/index/#contact')
-    return render(request, 'projects/index.html', context={'form': form, 'age': age})
+                return redirect('/#contact')
+        else:
+            messages.error(
+                request, "An error occured during registration")
+            return redirect('/#contact')
+
+    return render(request, 'projects/index.html', {'form': form, 'age': age})
 
 
 def about(request):
     date = list(map(int, datetime.now().strftime("%Y %m %d").split()))
     age = date[0] - 2005 if date[1] >= 4 and date[2] >= 16 else date[0] - 2006
-    return render(request, 'include/about.html', {'check_main': True, 'age': age})
+    return render(request, 'projects/include/about.html', {'check_main': True, 'age': age})
 
 
 def resume(request):
-    return render(request, 'include/resume.html', {'check_main': True})
+    return render(request, 'projects/include/resume.html', {'check_main': True})
 
 
 def contact(request):
-    form = MessageForm
+    form = MessageForm()
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
@@ -58,4 +68,5 @@ def contact(request):
             else:
                 messages.error(request, "Full name is incorrect!")
                 return redirect('contact')
-    return render(request, 'include/contact.html', {'form': form, 'check_main': True})
+
+    return render(request, 'projects/include/contact.html', {'form': form, 'check_main': True})
