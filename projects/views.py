@@ -35,10 +35,6 @@ def index(request):
             else:
                 messages.error(request, "Full name is incorrect!")
                 return redirect('/#contact')
-        else:
-            messages.error(
-                request, "An error occured during registration")
-            return redirect('/#contact')
 
     return render(request, 'projects/index.html', {'form': form, 'age': age})
 
