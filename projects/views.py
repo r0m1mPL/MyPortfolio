@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from projects.models import Message
 from .forms import MessageForm
 from django.contrib import messages
 from django.http import Http404
@@ -19,8 +20,11 @@ def index(request):
         if form.is_valid():
             if len(request.POST.get('name').split()) in [2, 3]:
                 if request.POST.get('email').lower():
-                    form = form.save(commit=False)
-                    form.email = form.email.lower()
+                    email = request.POST.get('email')
+                    if Message.objects.filter(email=email).count() >= 3:
+                        messages.error(
+                            request, "You can't send more than 3 messages!")
+                        return redirect('/#contact')
                     form.save()
                     messages.error(request, "Message has been sent!")
                     return redirect('/#contact')
@@ -56,8 +60,11 @@ def contact(request):
         if form.is_valid():
             if len(request.POST.get('name').split()) in [2, 3]:
                 if request.POST.get('email').lower():
-                    form = form.save(commit=False)
-                    form.email = form.email.lower()
+                    email = request.POST.get('email')
+                    if Message.objects.filter(email=email).count() >= 3:
+                        messages.error(
+                            request, "You can't send more than 3 messages!")
+                        return redirect('contact')
                     form.save()
                     messages.error(request, "Message has been sent!")
                     return redirect('contact')
