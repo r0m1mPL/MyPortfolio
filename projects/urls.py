@@ -1,9 +1,10 @@
+from django.contrib import admin
 from django.urls import path
 from . import views
 
 
 urlpatterns = [
-    path('admin/', views.error, name='error'),
+    path('admin-panel/', admin.site.urls),
 
     path('', views.index, name='home'),
 

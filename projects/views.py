@@ -2,12 +2,7 @@ from django.shortcuts import render, redirect
 from projects.models import Message
 from .forms import MessageForm
 from django.contrib import messages
-from django.http import Http404
 from datetime import datetime
-
-
-def error(request):
-    raise Http404("You're not allowed here!")
 
 
 def index(request):
