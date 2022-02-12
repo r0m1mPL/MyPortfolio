@@ -6,6 +6,7 @@ from datetime import datetime
 
 
 def index(request):
+    active = "/"
     date = list(map(int, datetime.now().strftime("%Y %m %d").split()))
     age = date[0] - 2005 if date[1] >= 4 and date[2] >= 16 else date[0] - 2006
 
@@ -31,20 +32,23 @@ def index(request):
                 messages.error(request, "Full name is incorrect!")
                 return redirect('/#contact')
 
-    return render(request, 'projects/index.html', {'form': form, 'age': age})
+    return render(request, 'projects/index.html', {'form': form, 'age': age, "active": active})
 
 
 def about(request):
+    active = "about"
     date = list(map(int, datetime.now().strftime("%Y %m %d").split()))
     age = date[0] - 2005 if date[1] >= 4 and date[2] >= 16 else date[0] - 2006
-    return render(request, 'projects/include/about.html', {'check_main': True, 'age': age})
+    return render(request, 'projects/include/about.html', {'check_main': True, 'age': age, "active": active})
 
 
 def resume(request):
-    return render(request, 'projects/include/resume.html', {'check_main': True})
+    active = "resume"
+    return render(request, 'projects/include/resume.html', {'check_main': True, "active": active})
 
 
 def contact(request):
+    active = "contact"
     form = MessageForm()
     if request.method == 'POST':
         form = MessageForm(request.POST)
@@ -67,4 +71,4 @@ def contact(request):
                 messages.error(request, "Full name is incorrect!")
                 return redirect('contact')
 
-    return render(request, 'projects/include/contact.html', {'form': form, 'check_main': True})
+    return render(request, 'projects/include/contact.html', {'form': form, 'check_main': True, "active": active})

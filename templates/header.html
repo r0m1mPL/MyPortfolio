@@ -23,14 +23,37 @@
 
         <nav id="navbar" class="nav-menu navbar">
             <ul>
+                {% if request.path == "/" %}
+                <li><a href="{% url 'home' %}" class="nav-link scrollto active"><i
+                            class="bx bx-home"></i><span>Home</span></a>
+                    {% else %}
                 <li><a href="{% url 'home' %}" class="nav-link scrollto"><i class="bx bx-home"></i><span>Home</span></a>
+                    {% endif %}
                 </li>
+
+                {% if "about" in request.path %}
+                <li><a href="{% url 'about' %}" class="nav-link scrollto active"><i class="bx bx-user"></i>
+                        <span>About</span></a></li>
+                {% else %}
                 <li><a href="{% url 'about' %}" class="nav-link scrollto"><i class="bx bx-user"></i>
                         <span>About</span></a></li>
+                {% endif %}
+
+                {% if "resume" in request.path %}
+                <li><a href="{% url 'resume' %}" class="nav-link scrollto active"><i
+                            class="bx bx-file-blank"></i><span>Resume</span></a></li>
+                {% else %}
                 <li><a href="{% url 'resume' %}" class="nav-link scrollto"><i
                             class="bx bx-file-blank"></i><span>Resume</span></a></li>
+                {% endif %}
+
+                {% if "contact" in request.path %}
+                <li><a href="{% url 'contact' %}" class="nav-link scrollto active"><i
+                            class="bx bx-envelope"></i><span>Contact</span></a></li>
+                {% else %}
                 <li><a href="{% url 'contact' %}" class="nav-link scrollto"><i
                             class="bx bx-envelope"></i><span>Contact</span></a></li>
+                {% endif %}
             </ul>
         </nav>
         <!-- .nav-menu -->
